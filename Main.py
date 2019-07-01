@@ -21,16 +21,16 @@ def plot_decision_boundary(X,y, model):
 
 
 numberPoints = 500
-centers = [[-1,1], [-1,-1], [1,-1], []]
+centers = [[-1,1], [-1,-1], [1,-1], [1,1], [0,0]]
 X, y = datasets.make_blobs(n_samples=numberPoints, random_state=123, centers = centers, cluster_std=0.4)
 # plt.scatter(X[y==0, 0],X[y==0, 1])
 # plt.scatter(X[y==1, 0],X[y==1, 1])
 # plt.scatter(X[y==2, 0],X[y==2, 1])
-y_cat = to_categorical(y, 3)
+y_cat = to_categorical(y, 5)
 # print(y_cat)
 
 model = Sequential()
-model.add(Dense(units=3, input_shape=(2,), activation='softmax'))
+model.add(Dense(units=5, input_shape=(2,), activation='softmax'))
 model.compile(Adam(0.1), loss = 'categorical_crossentropy', metrics=['accuracy'])
 model.fit(x=X, y=y_cat, verbose=1, batch_size=50,epochs=100)
 
@@ -38,6 +38,8 @@ plot_decision_boundary(X, y_cat, model)
 plt.scatter(X[y==0, 0],X[y==0, 1])
 plt.scatter(X[y==1, 0],X[y==1, 1])
 plt.scatter(X[y==2, 0],X[y==2, 1])
+plt.scatter(X[y==3, 0],X[y==3, 1])
+plt.scatter(X[y==4, 0],X[y==4, 1])
 
 x=.5
 y=-1
